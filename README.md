@@ -1,0 +1,1 @@
+# ngrx-traits-playground
