@@ -1,4 +1,8 @@
+
 # NgrxTraitsPlayground
+
+This a playground for the ngrx traits, it contains a simple working example of a simple product list, is also contains some extra presentational
+components, and services that can be use to build more complex examples likes the ones found in ngrx-traits example app project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
 
