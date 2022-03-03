@@ -1,35 +1,33 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ProductActions, ProductSelectors } from './products.traits';
 import { Injectable } from '@angular/core';
-import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError, exhaustMap, filter } from 'rxjs/operators';
 import { ProductService } from '../../../services/product.service';
-import { of } from 'rxjs';
 import { OrderService } from '../../../services/order.service';
 import { Store } from '@ngrx/store';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { catchError, exhaustMap, filter, map, switchMap } from 'rxjs/operators';
+import { ProductActions, ProductSelectors } from './products.traits';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ProductsEffects {
-  loadProducts$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductActions.fetch),
+  loadProducts$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.loadProducts),
       switchMap(() =>
-        //call your service to get the products data
         this.productService.getProducts().pipe(
           map((products) =>
-            ProductActions.fetchSuccess({ entities: products })
+            ProductActions.loadProductsSuccess({ entities: products })
           ),
-          catchError(() => of(ProductActions.fetchFail()))
+          catchError(() => of(ProductActions.loadProductsFail()))
         )
       )
-    )
-  );
+    );
+  });
 
-  checkout$ = createEffect(() =>
-    this.actions$.pipe(
+  checkout$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(ProductActions.checkout),
       concatLatestFrom(() =>
-        this.store.select(ProductSelectors.selectEntitySelected)
+        this.store.select(ProductSelectors.selectProductSelected)
       ),
       filter(([_, product]) => !!product),
       exhaustMap(([_, product]) =>
@@ -40,8 +38,8 @@ export class ProductsEffects {
             catchError(() => of(ProductActions.checkoutFail()))
           )
       )
-    )
-  );
+    );
+  });
 
   constructor(
     private actions$: Actions,

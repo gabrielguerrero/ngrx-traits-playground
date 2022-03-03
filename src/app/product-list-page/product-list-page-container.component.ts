@@ -58,9 +58,9 @@ import { Sort } from 'ngrx-traits/traits';
 })
 export class ProductListPageContainerComponent implements OnInit {
   data$ = combineLatest([
-    this.store.select(ProductSelectors.selectAll),
-    this.store.select(ProductSelectors.isLoading),
-    this.store.select(ProductSelectors.selectEntitySelected),
+    this.store.select(ProductSelectors.selectProductsList),
+    this.store.select(ProductSelectors.isProductsLoading),
+    this.store.select(ProductSelectors.selectProductSelected),
     this.store.select(ProductSelectors.isLoadingCheckout),
   ]).pipe(
     map(([products, isLoading, selectedProduct, isLoadingCheckout]) => ({
@@ -74,11 +74,11 @@ export class ProductListPageContainerComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.dispatch(ProductActions.fetch());
+    this.store.dispatch(ProductActions.loadProducts());
   }
 
   select({ id }: Product) {
-    this.store.dispatch(ProductActions.select({ id }));
+    this.store.dispatch(ProductActions.selectProduct({ id }));
   }
 
   checkout() {
@@ -86,10 +86,10 @@ export class ProductListPageContainerComponent implements OnInit {
   }
 
   filter(filters: ProductFilter) {
-    this.store.dispatch(ProductActions.filter({ filters }));
+    this.store.dispatch(ProductActions.filterProducts({ filters }));
   }
   // new event handler ↓
   sort(sort: Sort<Product>) {
-    this.store.dispatch(ProductActions.sort(sort));
+    this.store.dispatch(ProductActions.sortProducts(sort));
   }
 }
