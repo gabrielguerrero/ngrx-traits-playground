@@ -1,11 +1,11 @@
-import { createEntityFeatureFactory } from 'ngrx-traits';
+import { createEntityFeatureFactory } from '@ngrx-traits/core';
 import {
   addAsyncActionTrait,
   addFilterEntitiesTrait,
   addLoadEntitiesTrait,
   addSelectEntityTrait,
   addSortEntitiesTrait,
-} from 'ngrx-traits/traits';
+} from '@ngrx-traits/common';
 import { props } from '@ngrx/store';
 import { Product, ProductFilter } from '../../../models';
 

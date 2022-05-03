@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Product, ProductDetail } from '../models';
 import { delay } from 'rxjs/operators';
-import { sortData } from 'ngrx-traits/traits';
+import { sortData } from '@ngrx-traits/common';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
