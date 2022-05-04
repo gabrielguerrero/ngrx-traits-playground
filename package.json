@@ -28,7 +28,6 @@
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
     "msw": "^0.39.2",
-    "ngrx-traits": "^2.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
