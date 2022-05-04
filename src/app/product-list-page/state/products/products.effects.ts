@@ -14,8 +14,8 @@ export class ProductsEffects {
       ofType(ProductActions.loadProducts),
       switchMap(() =>
         this.productService.getProducts().pipe(
-          map((products) =>
-            ProductActions.loadProductsSuccess({ entities: products })
+          map(({ resultList, total }) =>
+            ProductActions.loadProductsSuccess({ entities: resultList })
           ),
           catchError(() => of(ProductActions.loadProductsFail()))
         )

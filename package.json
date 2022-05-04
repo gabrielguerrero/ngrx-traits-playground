@@ -27,6 +27,7 @@
     "@ngrx/schematics": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
+    "msw": "^0.39.2",
     "ngrx-traits": "^2.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
@@ -46,5 +47,8 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "prettier": "^2.4.1",
     "typescript": "~4.3.2"
+  },
+  "msw": {
+    "workerDirectory": "src"
   }
 }
